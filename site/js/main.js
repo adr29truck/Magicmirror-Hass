@@ -6,7 +6,7 @@ import {
     createConnection,
     subscribeEntities,
     ERR_HASS_HOST_REQUIRED,
-} from './dist/haws.es.js';
+} from '../.././dist/haws.es.js';
 
 (async () => {
     let auth;
