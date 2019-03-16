@@ -33,7 +33,7 @@ from '../dist/haws.es.js';
                         auth
                         });
                         subscribeEntities(connection, entities => renderEntities(connection, entities));
-                        
+
                         // To play from the console
                         window.auth = auth;
                         window.connection = connection;
@@ -43,11 +43,11 @@ from '../dist/haws.es.js';
                         basic = "function show(root) {
                         root.classList.remove('hide')
                     }
-                    
+
                     function hide(root) {
                         root.classList.add('hide')
                     }
-                    
+
                     function getCookie(cname) {
                         var name = cname + '=';
                         var decodedCookie = decodeURIComponent(document.cookie);
@@ -71,15 +71,15 @@ from '../dist/haws.es.js';
                         // clock.innerHTML = now.getHours().toString() + now.getMinutes().toString() + now.getSeconds().toString()
                         // rootList.appendChild(clock); TODO: FIXME:
                         "]
-                        
+
                         weather = config['weather']
                         transit = config['publicTransport']
                         mediaplayer = config['mediaPlayer']
-                        
+
                         always = "function reRender(root) {
                         while (root.lastChild) root.removeChild(root.lastChild);
                         }
-                        
+
                         function renderEntities(connection, entities) {
                             let rootList = document.querySelector('.wrapper');
                             reRender(rootList);
@@ -92,9 +92,9 @@ from '../dist/haws.es.js';
                             }
                             "
                             temp = ""
-                            
-                            if transit != nil 
-                                init << "if (document.querySelector('.publictransit') == null){ 
+
+                            if transit != nil
+                                init << "if (document.querySelector('.publictransit') == null){
                                 let temp = document.createElement('div'); temp.classList.add('publictransit');
                                 let line;
                                 let name;
@@ -108,17 +108,17 @@ from '../dist/haws.es.js';
                                 "
                                 transit.each do | var |
                                     init << "line = document.createElement('div');
-                                    line.id = '" + var['line'] + "'; 
+                                    line.id = '" + var['line'] + "';
                                     name = document.createElement('span');
-                                    name.innerHTML ='" + var['alias'] + "'; 
+                                    name.innerHTML ='" + var['alias'] + "';
                                     line.appendChild(name)
-                                    temp.appendChild(line); 
+                                    temp.appendChild(line);
                                     rootList.appendChild(temp);
                                     "
-                                end 
+                                end
                                 init << "}"
-                                
-                                
+
+
                                 transit.each do | var |
                                     p var['entities'][1]
                                     p var['line']
@@ -126,8 +126,8 @@ from '../dist/haws.es.js';
                                     value = document.querySelectorAll('#"+ var['line'] + " > span')
                                     if (entity['entity_id'] == '" + var['entities'][0] + "') {
                                         let rootList = document.getElementById('"+ var['line'] + "');
-                                        let first = document.createElement('span'); 
-                                        first.innerHTML = entity.state; 
+                                        let first = document.createElement('span');
+                                        first.innerHTML = entity.state;
                                         value = first.innerHTML
                                         rootList.appendChild(first);
                                     }
@@ -138,15 +138,15 @@ from '../dist/haws.es.js';
                                             rootList.appendChild(temp);
                                         }
                                         "
-                                        
+
                                     end
                                 else
                                     puts "Transit is not configured"
-                                    
+
                                     publictransport = ""
-                                    
+
                                 end
-                                
+
                                 q = 0
                                 initial = ""
                                 while q < init.length
