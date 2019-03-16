@@ -1,6 +1,6 @@
 require 'yaml'
 
-config = YAML.load(File.read('config.yaml'))
+config = YAML.load(File.read('../config.yaml'))
 hass_api = "import {
 
 getAuth,
@@ -10,7 +10,7 @@ createConnection,
 subscribeEntities,
 ERR_HASS_HOST_REQUIRED,
 }
-from './dist/haws.es.js';
+from '../dist/haws.es.js';
 
 (async () => {
     let auth;
@@ -133,4 +133,4 @@ from './dist/haws.es.js';
                                     q += 1
                                 end
                                 initial += "}"
-                                File.write('nothing2.js', hass_api + basic + initial + always + temp + alwaysend)
+                                File.write('main.js', hass_api + basic + initial + always + temp + alwaysend)
