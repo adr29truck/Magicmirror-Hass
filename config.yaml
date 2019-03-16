@@ -1,0 +1,20 @@
+publicTransport:
+  - line: svartStan
+    entities:
+    - sensor.mot_stan
+    - sensor.mot_stan_efter
+  - line: 'svartTorslanda'
+    entities:
+    - sensor.mot_torslanda
+    - sensor.mot_torslanda_efter
+
+mediaPlayer:
+  entities:
+  - media_player.Z_my_room_speaker
+  - media_player.home
+
+weather:
+  entity: weather.smhi_home
+
+newsapi:
+  apiKey: Redacted
