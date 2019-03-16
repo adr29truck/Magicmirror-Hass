@@ -66,6 +66,10 @@ from '../dist/haws.es.js';
                     "
                     init = ["function initialize() {
                         let rootList = document.querySelector('.wrapper');
+                        var now = new Date();
+                        // let clock = document.createElement('span');
+                        // clock.innerHTML = now.getHours().toString() + now.getMinutes().toString() + now.getSeconds().toString()
+                        // rootList.appendChild(clock); TODO: FIXME:
                         "]
                         
                         weather = config['weather']
@@ -82,6 +86,7 @@ from '../dist/haws.es.js';
                             Object.keys(entities).sort().forEach((entId) => {
                                 initialize();
                                 let entity = entities[entId];
+                                let value;
                                 "
                                 alwaysend = " });
                             }
@@ -92,10 +97,23 @@ from '../dist/haws.es.js';
                                 init << "if (document.querySelector('.publictransit') == null){ 
                                 let temp = document.createElement('div'); temp.classList.add('publictransit');
                                 let line;
+                                let name;
+                                let destination = document.createElement('span');
+                                destination.innerHTML = 'Heading';
+                                let next = document.createElement('span');
+                                next.innerHTML = 'Next';
+                                let thereafter = document.createElement('span');
+                                thereafter.innerHTML = 'There After';
+                                temp.appendChild(destination); temp.appendChild(next); temp.appendChild(thereafter);
                                 "
                                 transit.each do | var |
                                     init << "line = document.createElement('div');
-                                    line.id = '" + var['line'] + "'; temp.appendChild(line); rootList.appendChild(temp);
+                                    line.id = '" + var['line'] + "'; 
+                                    name = document.createElement('span');
+                                    name.innerHTML ='" + var['alias'] + "'; 
+                                    line.appendChild(name)
+                                    temp.appendChild(line); 
+                                    rootList.appendChild(temp);
                                     "
                                 end 
                                 init << "}"
@@ -104,13 +122,16 @@ from '../dist/haws.es.js';
                                 transit.each do | var |
                                     p var['entities'][1]
                                     p var['line']
-                                    temp += "if (entity['entity_id'] == '" + var['entities'][0] + "') {
-                                    let rootList = document.getElementById('"+ var['line'] + "');
+                                    temp += "
+                                    value = document.querySelectorAll('#"+ var['line'] + " > span')
+                                    if (entity['entity_id'] == '" + var['entities'][0] + "') {
+                                        let rootList = document.getElementById('"+ var['line'] + "');
                                         let first = document.createElement('span'); 
                                         first.innerHTML = entity.state; 
+                                        value = first.innerHTML
                                         rootList.appendChild(first);
                                     }
-                                    else if (entity['entity_id'] == '" + var['entities'][1] + "') {
+                                    else if (entity['entity_id'] == '" + var['entities'][1] + "' && entity.state != value[value.length-1]) {
                                         let rootList = document.getElementById('" + var['line'] + "');
                                             let temp = document.createElement('span');
                                             temp.innerHTML = entity.state;

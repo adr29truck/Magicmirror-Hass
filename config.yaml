@@ -1,9 +1,11 @@
 publicTransport:
   - line: svartStan
+    alias: Svart Express mot Valhamra
     entities:
     - sensor.mot_stan
     - sensor.mot_stan_efter
   - line: 'svartTorslanda'
+    alias: Svart Express mot Amhult
     entities:
     - sensor.mot_torslanda
     - sensor.mot_torslanda_efter
