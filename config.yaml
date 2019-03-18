@@ -1,0 +1,22 @@
+publicTransport:
+  - line: svartStan
+    alias: Svart Express mot Valhamra
+    entities:
+    - sensor.mot_stan
+    - sensor.mot_stan_efter
+  - line: 'svartTorslanda'
+    alias: Svart Express mot Amhult
+    entities:
+    - sensor.mot_torslanda
+    - sensor.mot_torslanda_efter
+
+mediaPlayer:
+  entities:
+  - media_player.Z_my_room_speaker
+  - media_player.home
+
+weather:
+  entity: weather.smhi_home
+
+newsapi:
+  apiKey: Redacted
